@@ -1,9 +1,9 @@
-object Form6: TForm6
-  Left = 350
-  Top = 185
-  Width = 928
-  Height = 480
-  Caption = 'Hanggar'
+object Form7: TForm7
+  Left = 290
+  Top = 194
+  Width = 934
+  Height = 475
+  Caption = 'Pesawat'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,9 +18,9 @@ object Form6: TForm6
   object Label1: TLabel
     Left = 56
     Top = 24
-    Width = 175
+    Width = 171
     Height = 23
-    Caption = 'HALAMAN HANGGAR'
+    Caption = 'HALAMAN PESAWAT'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -19
@@ -44,9 +44,9 @@ object Form6: TForm6
   object Label3: TLabel
     Left = 56
     Top = 112
-    Width = 94
+    Width = 72
     Height = 16
-    Caption = 'NAMA HANGGAR'
+    Caption = 'HANGGAR ID'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -13
@@ -57,9 +57,9 @@ object Form6: TForm6
   object Label4: TLabel
     Left = 56
     Top = 144
-    Width = 102
+    Width = 96
     Height = 16
-    Caption = 'PARKIR HANGGAR'
+    Caption = 'NAMA PESAWAT'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -13
@@ -70,9 +70,9 @@ object Form6: TForm6
   object Label5: TLabel
     Left = 56
     Top = 176
-    Width = 110
+    Width = 94
     Height = 16
-    Caption = 'KONDISI PESAWAT'
+    Caption = 'JENIS PESAWAT'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -13
@@ -80,20 +80,52 @@ object Form6: TForm6
     Font.Style = []
     ParentFont = False
   end
-  object Edit1: TEdit
-    Left = 176
-    Top = 112
-    Width = 121
-    Height = 21
-    TabOrder = 0
+  object Label6: TLabel
+    Left = 56
+    Top = 208
+    Width = 93
+    Height = 16
+    Caption = 'KODE PESAWAT'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Label7: TLabel
+    Left = 56
+    Top = 240
+    Width = 110
+    Height = 16
+    Caption = 'STATUS PESAWAT'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Label8: TLabel
+    Left = 56
+    Top = 272
+    Width = 79
+    Height = 16
+    Caption = 'HARGA SEWA'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
   end
   object dbgrd1: TDBGrid
-    Left = 320
+    Left = 315
     Top = 64
     Width = 425
     Height = 169
     DataSource = ds1
-    TabOrder = 1
+    TabOrder = 0
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
     TitleFont.Height = -11
@@ -103,47 +135,47 @@ object Form6: TForm6
   end
   object Button1: TButton
     Left = 88
-    Top = 248
+    Top = 312
     Width = 75
     Height = 25
     Caption = 'BARU'
-    TabOrder = 2
+    TabOrder = 1
     OnClick = Button1Click
   end
   object Button2: TButton
     Left = 184
-    Top = 248
+    Top = 312
     Width = 75
     Height = 25
     Caption = 'TAMBAH'
-    TabOrder = 3
+    TabOrder = 2
     OnClick = Button2Click
   end
   object Button3: TButton
     Left = 280
-    Top = 248
+    Top = 312
     Width = 75
     Height = 25
     Caption = 'EDIT'
-    TabOrder = 4
+    TabOrder = 3
     OnClick = Button3Click
   end
   object Button4: TButton
     Left = 376
-    Top = 248
+    Top = 312
     Width = 75
     Height = 25
     Caption = 'HAPUS'
-    TabOrder = 5
+    TabOrder = 4
     OnClick = Button4Click
   end
   object Button5: TButton
     Left = 472
-    Top = 248
+    Top = 312
     Width = 75
     Height = 25
     Caption = 'BATAL'
-    TabOrder = 6
+    TabOrder = 5
     OnClick = Button5Click
   end
   object cbb1: TComboBox
@@ -152,24 +184,32 @@ object Form6: TForm6
     Width = 121
     Height = 21
     ItemHeight = 13
-    TabOrder = 7
+    TabOrder = 6
   end
   object Button6: TButton
     Left = 568
-    Top = 248
+    Top = 312
     Width = 75
     Height = 25
     Caption = 'CETAK'
+    TabOrder = 7
+  end
+  object cbb2: TComboBox
+    Left = 176
+    Top = 112
+    Width = 121
+    Height = 21
+    ItemHeight = 13
     TabOrder = 8
   end
-  object Edit2: TEdit
+  object Edit1: TEdit
     Left = 176
     Top = 144
     Width = 121
     Height = 21
     TabOrder = 9
   end
-  object cbb2: TComboBox
+  object cbb3: TComboBox
     Left = 176
     Top = 176
     Width = 121
@@ -177,8 +217,34 @@ object Form6: TForm6
     ItemHeight = 13
     TabOrder = 10
     Items.Strings = (
-      'Perbaikan'
-      'Layak Terbang')
+      'Besar'
+      'Sedang'
+      'Kecil')
+  end
+  object Edit2: TEdit
+    Left = 176
+    Top = 208
+    Width = 121
+    Height = 21
+    TabOrder = 11
+  end
+  object cbb4: TComboBox
+    Left = 176
+    Top = 240
+    Width = 121
+    Height = 21
+    ItemHeight = 13
+    TabOrder = 12
+    Items.Strings = (
+      'Tersedia'
+      'Tidak Tersedia')
+  end
+  object Edit3: TEdit
+    Left = 176
+    Top = 272
+    Width = 121
+    Height = 21
+    TabOrder = 13
   end
   object con1: TZConnection
     ControlsCodePage = cGET_ACP
@@ -191,31 +257,31 @@ object Form6: TForm6
     User = 'root'
     Protocol = 'mysql'
     LibraryLocation = 'E:\Kuliah\Visual 3 5O\privatejet\libmysql.dll'
-    Left = 104
-    Top = 288
+    Left = 320
+    Top = 240
   end
   object zqry1: TZQuery
     Connection = con1
     Active = True
     SQL.Strings = (
-      'select * from hanggar'
+      'select * from pesawat'
       ''
       '')
     Params = <>
-    Left = 144
-    Top = 288
+    Left = 360
+    Top = 240
   end
   object ds1: TDataSource
     DataSet = zqry1
-    Left = 184
-    Top = 288
+    Left = 400
+    Top = 240
   end
   object frxDBDataset1: TfrxDBDataset
     UserName = 'frxDBDataset1'
     CloseDataSource = False
     BCDToCurrency = False
-    Left = 240
-    Top = 288
+    Left = 456
+    Top = 240
   end
   object frxReport1: TfrxReport
     Version = '4.12.6'
@@ -232,8 +298,8 @@ object Form6: TForm6
       'begin'
       ''
       'end.')
-    Left = 304
-    Top = 288
+    Left = 520
+    Top = 240
     Datasets = <>
     Variables = <>
     Style = <>
@@ -244,7 +310,16 @@ object Form6: TForm6
     SQL.Strings = (
       'select * from pegawai')
     Params = <>
-    Left = 144
-    Top = 344
+    Left = 576
+    Top = 240
+  end
+  object zqry3: TZQuery
+    Connection = con1
+    Active = True
+    SQL.Strings = (
+      'select * from hanggar')
+    Params = <>
+    Left = 616
+    Top = 240
   end
 end
