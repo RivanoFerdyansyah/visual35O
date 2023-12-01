@@ -1,9 +1,9 @@
 object Form5: TForm5
-  Left = 278
-  Top = 186
+  Left = 226
+  Top = 205
   Width = 1026
   Height = 480
-  Caption = 'Form5'
+  Caption = 'Customer'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -125,42 +125,6 @@ object Form5: TForm5
     TitleFont.Name = 'Tahoma'
     TitleFont.Style = []
     OnCellClick = dbgrd1CellClick
-    Columns = <
-      item
-        Expanded = False
-        FieldName = 'id'
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'nik'
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'nama'
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'jenis kelamin'
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'No HP'
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'alamat'
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'email'
-        Visible = True
-      end>
   end
   object Button1: TButton
     Left = 88
@@ -187,6 +151,7 @@ object Form5: TForm5
     Height = 25
     Caption = 'EDIT'
     TabOrder = 4
+    OnClick = Button3Click
   end
   object Button4: TButton
     Left = 376
@@ -195,6 +160,7 @@ object Form5: TForm5
     Height = 25
     Caption = 'HAPUS'
     TabOrder = 5
+    OnClick = Button4Click
   end
   object Button5: TButton
     Left = 472
@@ -203,6 +169,7 @@ object Form5: TForm5
     Height = 25
     Caption = 'BATAL'
     TabOrder = 6
+    OnClick = Button5Click
   end
   object cbb1: TComboBox
     Left = 176
@@ -212,9 +179,8 @@ object Form5: TForm5
     ItemHeight = 13
     TabOrder = 7
     Items.Strings = (
-      'Manager'
-      'Supervisor'
-      'Staff')
+      'Laki-Laki'
+      'Perempuan')
   end
   object Button6: TButton
     Left = 568

@@ -182,7 +182,7 @@ awal;
 end;
 end;
 
-procedure TForm4.Button4Click(Sender: TObject);
+procedure TForm4.Button4Click(Sender: TObject);//Button Hapus
 begin
 if MessageDlg('APAKAH YAKIN MENGHAPUS DATA INI?',mtWarning,[mbYes,mbNo],0)= mryes then
 begin
@@ -202,7 +202,7 @@ awal;
 end;
 end;
 
-procedure TForm4.Button5Click(Sender: TObject);
+procedure TForm4.Button5Click(Sender: TObject);//Button Batal
 begin
 awal;
 end;

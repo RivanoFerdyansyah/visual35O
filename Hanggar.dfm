@@ -1,9 +1,9 @@
-object Form4: TForm4
-  Left = 274
-  Top = 169
-  Width = 780
-  Height = 449
-  Caption = 'Pegawai'
+object Form6: TForm6
+  Left = 189
+  Top = 190
+  Width = 928
+  Height = 480
+  Caption = 'Hanggar'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -11,15 +11,16 @@ object Form4: TForm4
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  OnCreate = FormCreate
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
-    Left = 80
+    Left = 56
     Top = 24
-    Width = 169
+    Width = 175
     Height = 23
-    Caption = 'HALAMAN PEGAWAI'
+    Caption = 'HALAMAN HANGGAR'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -19
@@ -28,11 +29,11 @@ object Form4: TForm4
     ParentFont = False
   end
   object Label2: TLabel
-    Left = 80
+    Left = 56
     Top = 80
-    Width = 34
+    Width = 70
     Height = 16
-    Caption = 'NAMA'
+    Caption = 'PEGAWAI ID'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -13
@@ -41,11 +42,11 @@ object Form4: TForm4
     ParentFont = False
   end
   object Label3: TLabel
-    Left = 80
+    Left = 56
     Top = 112
-    Width = 52
+    Width = 94
     Height = 16
-    Caption = 'JABATAN'
+    Caption = 'NAMA HANGGAR'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -13
@@ -54,11 +55,11 @@ object Form4: TForm4
     ParentFont = False
   end
   object Label4: TLabel
-    Left = 80
+    Left = 56
     Top = 144
-    Width = 36
+    Width = 102
     Height = 16
-    Caption = 'NO HP'
+    Caption = 'PARKIR HANGGAR'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -13
@@ -67,24 +68,11 @@ object Form4: TForm4
     ParentFont = False
   end
   object Label5: TLabel
-    Left = 80
+    Left = 56
     Top = 176
-    Width = 48
+    Width = 110
     Height = 16
-    Caption = 'ALAMAT'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -13
-    Font.Name = 'Tahoma'
-    Font.Style = []
-    ParentFont = False
-  end
-  object Label6: TLabel
-    Left = 80
-    Top = 208
-    Width = 86
-    Height = 16
-    Caption = 'JENIS KELAMIN'
+    Caption = 'KONDISI PESAWAT'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -13
@@ -94,7 +82,7 @@ object Form4: TForm4
   end
   object Edit1: TEdit
     Left = 176
-    Top = 80
+    Top = 112
     Width = 121
     Height = 21
     TabOrder = 0
@@ -160,15 +148,11 @@ object Form4: TForm4
   end
   object cbb1: TComboBox
     Left = 176
-    Top = 112
+    Top = 80
     Width = 121
     Height = 21
     ItemHeight = 13
     TabOrder = 7
-    Items.Strings = (
-      'Manager'
-      'Supervisor'
-      'Staff')
   end
   object Button6: TButton
     Left = 568
@@ -185,23 +169,16 @@ object Form4: TForm4
     Height = 21
     TabOrder = 9
   end
-  object Edit3: TEdit
+  object cbb2: TComboBox
     Left = 176
     Top = 176
     Width = 121
     Height = 21
-    TabOrder = 10
-  end
-  object cbb2: TComboBox
-    Left = 176
-    Top = 208
-    Width = 121
-    Height = 21
     ItemHeight = 13
-    TabOrder = 11
+    TabOrder = 10
     Items.Strings = (
-      'Laki-Laki'
-      'Perempuan')
+      'Perbaikan'
+      'Layak Terbang')
   end
   object con1: TZConnection
     ControlsCodePage = cGET_ACP
@@ -221,7 +198,8 @@ object Form4: TForm4
     Connection = con1
     Active = True
     SQL.Strings = (
-      'select * from pegawai'
+      'select * from hanggar'
+      ''
       '')
     Params = <>
     Left = 144
@@ -259,5 +237,14 @@ object Form4: TForm4
     Datasets = <>
     Variables = <>
     Style = <>
+  end
+  object zqry2: TZQuery
+    Connection = con1
+    Active = True
+    SQL.Strings = (
+      'select * from pegawai')
+    Params = <>
+    Left = 144
+    Top = 344
   end
 end

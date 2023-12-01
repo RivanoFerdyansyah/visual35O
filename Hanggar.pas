@@ -1,22 +1,19 @@
-unit Customer;
+unit Hanggar;
 
 interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, frxClass, frxDBSet, StdCtrls, Grids, DBGrids, DB,
-  ZAbstractRODataset, ZAbstractDataset, ZDataset, ZAbstractConnection,
-  ZConnection;
+  Dialogs, frxClass, frxDBSet, DB, ZAbstractRODataset, ZAbstractDataset,
+  ZDataset, ZAbstractConnection, ZConnection, StdCtrls, Grids, DBGrids;
 
 type
-  TForm5 = class(TForm)
-    con1: TZConnection;
-    zqry1: TZQuery;
-    ds1: TDataSource;
+  TForm6 = class(TForm)
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
     Label4: TLabel;
+    Label5: TLabel;
     Edit1: TEdit;
     dbgrd1: TDBGrid;
     Button1: TButton;
@@ -26,15 +23,14 @@ type
     Button5: TButton;
     cbb1: TComboBox;
     Button6: TButton;
+    con1: TZConnection;
+    zqry1: TZQuery;
+    ds1: TDataSource;
     frxDBDataset1: TfrxDBDataset;
     frxReport1: TfrxReport;
-    Label5: TLabel;
-    Label6: TLabel;
     Edit2: TEdit;
-    Edit3: TEdit;
-    Edit4: TEdit;
-    Edit5: TEdit;
-    Label7: TLabel;
+    cbb2: TComboBox;
+    zqry2: TZQuery;
     procedure FormShow(Sender: TObject);
     procedure awal;
     procedure editbersih;
@@ -42,6 +38,7 @@ type
     procedure dbgrd1CellClick(Column: TColumn);
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
     procedure Button3Click(Sender: TObject);
     procedure Button4Click(Sender: TObject);
     procedure Button5Click(Sender: TObject);
@@ -52,23 +49,21 @@ type
   end;
 
 var
-  Form5: TForm5;
+  Form6: TForm6;
   id : string;
 
 implementation
 
 {$R *.dfm}
 
-procedure TForm5.awal;
+procedure TForm6.awal;
 begin
 editbersih;
 
+cbb1.Enabled:= false;
 Edit1.Enabled:= false;
 Edit2.Enabled:= false;
-cbb1.Enabled:= false;
-Edit3.Enabled:= false;
-edit4.Enabled:= false;
-edit5.Enabled:= false;
+cbb2.Enabled:= false;
 
 button1.Enabled:= True;
 button2.Enabled:= False;
@@ -78,33 +73,28 @@ button5.Enabled:= False;
 button6.Enabled:= False;
 end;
 
-procedure TForm5.editbersih;
+procedure TForm6.editbersih;
 begin
+cbb1.text:= '';
 Edit1.Clear;
 Edit2.Clear;
-cbb1.text:= '';
-Edit3.Clear;
-Edit4.Clear;
-Edit5.Clear;
+cbb2.text:= '';
 end;
 
-procedure TForm5.editenable;
+procedure TForm6.editenable;
 begin
+cbb1.Enabled:= True;
 Edit1.Enabled:= True;
 Edit2.Enabled:= True;
-cbb1.Enabled:= True;
-Edit2.Enabled:= True;
-Edit3.Enabled:= True;
-Edit4.Enabled:= True;
-Edit5.Enabled:= True;
+cbb2.Enabled:= True;
 end;
 
-procedure TForm5.FormShow(Sender: TObject);
+procedure TForm6.FormShow(Sender: TObject);
 begin
 awal;
 end;
 
-procedure TForm5.dbgrd1CellClick(Column: TColumn);
+procedure TForm6.dbgrd1CellClick(Column: TColumn);
 begin
 editenable;
 Button1.Enabled:= True;
@@ -114,15 +104,13 @@ Button4.Enabled:= True;
 Button5.Enabled:= True;
 Button6.Enabled:= True;
 id:=zqry1.Fields[0].AsString;
-Edit1.Text:= zqry1.FieldList[1].AsString;
-Edit2.Text:= zqry1.FieldList[2].AsString;
-cbb1.Text:= zqry1.FieldList[3].AsString;
-Edit3.Text:= zqry1.FieldList[4].AsString;
-Edit4.Text:= zqry1.FieldList[5].AsString;
-Edit5.Text:= zqry1.FieldList[6].AsString;
+cbb1.Text:= zqry1.FieldList[1].AsString;
+Edit1.Text:= zqry1.FieldList[2].AsString;
+Edit2.Text:= zqry1.FieldList[3].AsString;
+cbb2.Text:= zqry1.FieldList[4].AsString;
 end;
 
-procedure TForm5.Button1Click(Sender: TObject);//button Baru
+procedure TForm6.Button1Click(Sender: TObject);//button Baru
 begin
 editbersih;
 
@@ -136,13 +124,13 @@ Button6.Enabled:= True;
 editenable;
 end;
 
-procedure TForm5.Button2Click(Sender: TObject); //button Tambah
+procedure TForm6.Button2Click(Sender: TObject);//Button Tambah
 begin
-if (Edit1.Text= '')or (edit2.Text ='')or(cbb1.Text= '') or(Edit3.Text= '') or(Edit4.Text= '') or(Edit5.Text= '') then
+if (cbb1.Text= '')or (Edit1.Text ='')or(Edit2.Text= '') or(cbb2.Text= '') then
 begin
 ShowMessage('DATA TIDAK BOLEH KOSONG!');
 end else
-if (zqry1.Locate('nik',Edit1.Text,[])) and (zqry1.Locate('nama',Edit2.Text,[])) and (zqry1.Locate('email',Edit5.Text,[])) then
+if (zqry1.Locate('pegawai_id',cbb1.Text,[])) and (zqry1.Locate('nama_hanggar',Edit1.Text,[])) and (zqry1.Locate('parkir_hanggar',Edit2.Text,[])) and (zqry1.Locate('kondisi_pesawat',cbb2.Text,[])) then
 begin
 ShowMessage('DATA USER SUDAH DIGUNAKAN');
 awal;
@@ -150,11 +138,11 @@ end else
 begin
 //simpan
 zqry1.SQL.Clear;
-zqry1.SQL.Add('insert into customer values (null,"'+Edit1.Text+'","'+edit2.Text+'","'+cbb1.Text+'","'+edit3.Text+'","'+edit4.Text+'","'+edit5.Text+'")');
+zqry1.SQL.Add('insert into hanggar values (null,"'+cbb1.Text+'","'+edit1.Text+'","'+edit2.Text+'","'+cbb2.Text+'")');
 zqry1.ExecSQL;
 
 zqry1.SQL.Clear;
-zqry1.SQL.Add('select * from customer');
+zqry1.SQL.Add('select * from hanggar');
 zqry1.Open;
 ShowMessage('DATA BERHASIL DISIMPAN!');
 awal;
@@ -162,13 +150,23 @@ awal;
 end;
 end;
 
-procedure TForm5.Button3Click(Sender: TObject);//button Edit
+procedure TForm6.FormCreate(Sender: TObject);
 begin
-if (Edit1.Text= '')or (edit2.Text ='')or(cbb1.Text= '') or(Edit3.Text= '') or(Edit4.Text= '') or(Edit5.Text= '')then
+zqry2.First;
+while not zqry2.Eof do
+begin
+  cbb1.items.add(zqry2.fieldbyname('id').asstring);
+  zqry2.Next;
+end;
+end;
+
+procedure TForm6.Button3Click(Sender: TObject);//Button Edit
+begin
+if (cbb1.Text= '')or (Edit1.Text ='')or(Edit2.Text= '') or(cbb2.Text= '') then
 begin
 ShowMessage('INPUTAN WAJIB DIISI!');
 end else
-if (Edit1.Text = zqry1.Fields[1].AsString) and (edit2.Text = zqry1.Fields[2].AsString) and (cbb1.Text = zqry1.Fields[3].AsString) and (Edit3.Text = zqry1.Fields[4].AsString) and (edit4.Text = zqry1.Fields[5].AsString) and (edit5.Text = zqry1.Fields[6].AsString)then
+if (cbb1.Text = zqry1.Fields[1].AsString) and (edit1.Text = zqry1.Fields[2].AsString) and (edit2.Text = zqry1.Fields[3].AsString) and (cbb2.Text = zqry1.Fields[4].AsString)then
 begin
 ShowMessage('DATA TIDAK ADA PERUBAHAN');
 awal;
@@ -177,26 +175,26 @@ begin
 id:=dbgrd1.DataSource.DataSet.FieldByName('id').AsString;
 ShowMessage('DATA BERHASIL DIUPDATE!'); //UPDATE
 zqry1.SQL.Clear;
-zqry1.SQL.Add('Update customer set nik= "'+Edit1.Text+'",nama="'+edit2.Text+'",jk="'+cbb1.Text+'",no_hp="'+edit3.Text+'",alamat="'+edit4.Text+'",email="'+edit5.Text+'" where id="'+id+'"');
+zqry1.SQL.Add('Update hanggar set pegawai_id= "'+cbb1.Text+'",nama_hanggar="'+edit2.Text+'",parkir_hanggar="'+edit2.Text+'",kondisi_pesawat="'+cbb2.Text+'" where id="'+id+'"');
 zqry1. ExecSQL;
 
 zqry1.SQL.Clear;
-zqry1.SQL.Add('select * from customer');
+zqry1.SQL.Add('select * from hanggar');
 zqry1.Open;
 awal;
 end;
 end;
 
-procedure TForm5.Button4Click(Sender: TObject);//Button Hapus
+procedure TForm6.Button4Click(Sender: TObject);//Button Hapus
 begin
 if MessageDlg('APAKAH YAKIN MENGHAPUS DATA INI?',mtWarning,[mbYes,mbNo],0)= mryes then
 begin
 id:=dbgrd1.DataSource.DataSet.FieldByName('id').AsString;
 zqry1.SQL.Clear;
-zqry1.SQL.Add(' delete from customer where id="'+id+'"');
+zqry1.SQL.Add(' delete from hanggar where id="'+id+'"');
 zqry1. ExecSQL;
 zqry1.SQL.Clear;
-zqry1.SQL.Add('select * from customer');
+zqry1.SQL.Add('select * from hanggar');
 zqry1.Open;
 ShowMessage('DATA BERHASIL DIHAPUS');
 awal;
@@ -207,7 +205,7 @@ awal;
 end;
 end;
 
-procedure TForm5.Button5Click(Sender: TObject);//Button Batal
+procedure TForm6.Button5Click(Sender: TObject);//Button Batal
 begin
 awal;
 end;
