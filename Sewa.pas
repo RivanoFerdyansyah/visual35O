@@ -29,8 +29,6 @@ type
     con1: TZConnection;
     zqry1: TZQuery;
     ds1: TDataSource;
-    frxDBDataset1: TfrxDBDataset;
-    frxReport1: TfrxReport;
     zqry2: TZQuery;
     zqry3: TZQuery;
     Label9: TLabel;
@@ -43,6 +41,8 @@ type
     zqry4: TZQuery;
     Label10: TLabel;
     Edit4: TEdit;
+    frxDBDataset1: TfrxDBDataset;
+    frxReport1: TfrxReport;
     procedure FormCreate(Sender: TObject);
     procedure awal;
     procedure editbersih;
@@ -54,6 +54,7 @@ type
     procedure Button3Click(Sender: TObject);
     procedure Button4Click(Sender: TObject);
     procedure Button5Click(Sender: TObject);
+    procedure Button6Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -231,7 +232,7 @@ awal;
 end;
 end;
 
-procedure TForm8.Button4Click(Sender: TObject);
+procedure TForm8.Button4Click(Sender: TObject);//button hapus
 begin
 if MessageDlg('APAKAH YAKIN MENGHAPUS DATA INI?',mtWarning,[mbYes,mbNo],0)= mryes then
 begin
@@ -254,6 +255,11 @@ end;
 procedure TForm8.Button5Click(Sender: TObject);
 begin
 awal;
+end;
+
+procedure TForm8.Button6Click(Sender: TObject);
+begin
+frxReport1.ShowReport();
 end;
 
 end.

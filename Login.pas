@@ -17,6 +17,8 @@ type
     Button1: TButton;
     con1: TZConnection;
     zqry1: TZQuery;
+    Button2: TButton;
+    Button3: TButton;
     procedure Button1Click(Sender: TObject);
     procedure awal;
     procedure FormShow(Sender: TObject);

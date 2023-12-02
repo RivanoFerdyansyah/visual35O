@@ -39,6 +39,7 @@ type
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
     procedure Button4Click(Sender: TObject);
+    procedure Button6Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -191,6 +192,11 @@ begin
 ShowMessage('DATA BATAL DIHAPUS');
 awal;
 end;
+end;
+
+procedure TForm3.Button6Click(Sender: TObject);
+begin
+frxReport1.ShowReport();
 end;
 
 end.

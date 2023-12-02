@@ -43,6 +43,7 @@ type
     procedure Button3Click(Sender: TObject);
     procedure Button4Click(Sender: TObject);
     procedure Button5Click(Sender: TObject);
+    procedure Button6Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -205,6 +206,11 @@ end;
 procedure TForm4.Button5Click(Sender: TObject);//Button Batal
 begin
 awal;
+end;
+
+procedure TForm4.Button6Click(Sender: TObject);
+begin
+frxReport1.ShowReport();
 end;
 
 end.

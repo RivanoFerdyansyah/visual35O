@@ -27,8 +27,6 @@ type
     con1: TZConnection;
     zqry1: TZQuery;
     ds1: TDataSource;
-    frxDBDataset1: TfrxDBDataset;
-    frxReport1: TfrxReport;
     zqry2: TZQuery;
     Label6: TLabel;
     Label7: TLabel;
@@ -39,6 +37,8 @@ type
     cbb4: TComboBox;
     Edit3: TEdit;
     zqry3: TZQuery;
+    frxDBDataset1: TfrxDBDataset;
+    frxReport1: TfrxReport;
     procedure FormShow(Sender: TObject);
     procedure awal;
     procedure editbersih;
@@ -50,6 +50,7 @@ type
     procedure dbgrd1CellClick(Column: TColumn);
     procedure Button4Click(Sender: TObject);
     procedure Button5Click(Sender: TObject);
+    procedure Button6Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -234,6 +235,11 @@ end;
 procedure TForm7.Button5Click(Sender: TObject);
 begin
 awal;
+end;
+
+procedure TForm7.Button6Click(Sender: TObject);
+begin
+frxReport1.ShowReport();
 end;
 
 end.

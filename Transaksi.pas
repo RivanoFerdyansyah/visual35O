@@ -32,8 +32,6 @@ type
     con1: TZConnection;
     zqry1: TZQuery;
     ds1: TDataSource;
-    frxDBDataset1: TfrxDBDataset;
-    frxReport1: TfrxReport;
     zqry2: TZQuery;
     zqry3: TZQuery;
     zqry4: TZQuery;
@@ -46,6 +44,8 @@ type
     cbb7: TComboBox;
     cbb8: TComboBox;
     Edit2: TEdit;
+    frxDBDataset1: TfrxDBDataset;
+    frxReport1: TfrxReport;
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure awal;
@@ -53,6 +53,11 @@ type
     procedure editenable;
     procedure dbgrd1CellClick(Column: TColumn);
     procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
+    procedure Button5Click(Sender: TObject);
+    procedure Button4Click(Sender: TObject);
+    procedure Button6Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -61,6 +66,7 @@ type
 
 var
   Form9: TForm9;
+  id : string;
 
 implementation
 
@@ -184,6 +190,88 @@ Button5.Enabled:= True;
 Button6.Enabled:= True;
 
 editenable;
+end;
+
+procedure TForm9.Button2Click(Sender: TObject);//button Tambah
+begin
+if (cbb1.Text= '')or (cbb2.Text ='')or(cbb3.Text= '') or(cbb4.Text= '') or(Edit1.Text= '') or(cbb5.Text= '') or(cbb6.Text= '')or (cbb7.Text= '')or(edit2.Text= '') or(cbb8.Text= '') then
+begin
+ShowMessage('DATA TIDAK BOLEH KOSONG!');
+end else
+if (zqry1.Locate('pesawat_id',cbb1.Text,[])) and (zqry1.Locate('sewa_id',cbb2.Text,[])) and (zqry1.Locate('customer_id',cbb3.Text,[])) and (zqry1.Locate('pegawai_id',cbb4.Text,[])) and (zqry1.Locate('tanggal_sewa',Edit1.Text,[])) and (zqry1.Locate('jenis_pesawat',cbb5.Text,[])) and (zqry1.Locate('perjalanan',cbb6.Text,[])) and (zqry1.Locate('jenis_penerbangan',cbb7.Text,[])) and (zqry1.Locate('total_pembayaran',Edit2.Text,[])) and (zqry1.Locate('pembayaran',cbb8.Text,[])) then
+begin
+ShowMessage('DATA USER SUDAH DIGUNAKAN');
+awal;
+end else
+begin
+//simpan
+zqry1.SQL.Clear;
+zqry1.SQL.Add('insert into transaksi values (null,"'+cbb1.Text+'","'+cbb2.Text+'","'+cbb3.Text+'","'+cbb4.Text+'","'+edit1.Text+'","'+cbb5.Text+'","'+cbb6.Text+'","'+cbb7.Text+'","'+edit2.Text+'","'+cbb8.Text+'")');
+zqry1.ExecSQL;
+
+zqry1.SQL.Clear;
+zqry1.SQL.Add('select * from transaksi');
+zqry1.Open;
+ShowMessage('DATA BERHASIL DISIMPAN!');
+awal;
+
+end;
+end;
+
+procedure TForm9.Button3Click(Sender: TObject);//button Edit
+begin
+if (cbb1.Text= '')or (cbb2.Text ='')or(cbb3.Text= '') or(cbb4.Text= '') or(Edit1.Text= '') or(cbb5.Text= '') or(cbb6.Text= '')or (cbb7.Text= '')or(edit2.Text= '') or(cbb8.Text= '') then
+begin
+ShowMessage('INPUTAN WAJIB DIISI!');
+end else
+if (zqry1.Locate('pesawat_id',cbb1.Text,[])) and (zqry1.Locate('sewa_id',cbb2.Text,[])) and (zqry1.Locate('customer_id',cbb3.Text,[])) and (zqry1.Locate('pegawai_id',cbb4.Text,[])) and (zqry1.Locate('tanggal_sewa',Edit1.Text,[])) and (zqry1.Locate('jenis_pesawat',cbb5.Text,[])) and (zqry1.Locate('perjalanan',cbb6.Text,[])) and (zqry1.Locate('jenis_penerbangan',cbb7.Text,[])) and (zqry1.Locate('total_pembayaran',Edit2.Text,[])) and (zqry1.Locate('pembayaran',cbb8.Text,[])) then
+begin
+ShowMessage('DATA TIDAK ADA PERUBAHAN');
+awal;
+begin
+id:=dbgrd1.DataSource.DataSet.FieldByName('id').AsString;
+ShowMessage('DATA BERHASIL DIUPDATE!'); //UPDATE
+zqry1.SQL.Clear;
+zqry1.SQL.Add('Update transaksi set pesawat_id= "'+cbb1.Text+'",sewa_id="'+cbb2.Text+'",customer_id="'+cbb3.Text+'",pegawai_id="'+cbb4.Text+'",tanggal_sewa="'+edit2.Text+'",jenis_pesawat="'+cbb5.Text+'",perjalanan="'+cbb6.Text+'",jenis_penerbangan="'+cbb7.Text+'",total_pembayaran="'+edit2.Text+'",pembarayan="'+cbb8.Text+'" where id="'+id+'"');
+zqry1. ExecSQL;
+
+zqry1.SQL.Clear;
+zqry1.SQL.Add('select * from transaksi');
+zqry1.Open;
+awal;
+end;
+end;
+end;
+
+
+procedure TForm9.Button5Click(Sender: TObject);//button Batal
+begin
+awal;
+end;
+
+procedure TForm9.Button4Click(Sender: TObject);
+begin
+if MessageDlg('APAKAH YAKIN MENGHAPUS DATA INI?',mtWarning,[mbYes,mbNo],0)= mryes then
+begin
+id:=dbgrd1.DataSource.DataSet.FieldByName('id').AsString;
+zqry1.SQL.Clear;
+zqry1.SQL.Add(' delete from transaksi where id="'+id+'"');
+zqry1. ExecSQL;
+zqry1.SQL.Clear;
+zqry1.SQL.Add('select * from transaksi');
+zqry1.Open;
+ShowMessage('DATA BERHASIL DIHAPUS');
+awal;
+end else
+begin
+ShowMessage('DATA BATAL DIHAPUS');
+awal;
+end;
+end;
+
+procedure TForm9.Button6Click(Sender: TObject);
+begin
+frxReport1.ShowReport();
 end;
 
 end.
